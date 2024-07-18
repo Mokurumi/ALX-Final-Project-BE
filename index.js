@@ -5,6 +5,7 @@ const cors = require('cors');
 const app = express();
 
 const user = require('./routes/user');
+const tasks = require('./routes/tasks');
 
 const fileUpload = require('express-fileupload');
 
@@ -35,6 +36,7 @@ app.use(cors());
 
 app.use(express.json());
 app.use('/users', user);
+app.use('/tasks', tasks);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
