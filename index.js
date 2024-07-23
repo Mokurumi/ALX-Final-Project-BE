@@ -32,7 +32,7 @@ const publicDirectoryPath = path.join(__dirname, './view');
 app.use(express.static(publicDirectoryPath));
 
 app.use('/course-file', express.static('course-file'));
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
 app.use(express.json());
 app.use('/users', user);
