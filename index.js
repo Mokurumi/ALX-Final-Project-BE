@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const app = express();
 
 const user = require('./routes/user');
@@ -17,6 +16,8 @@ app.use(
     preserveExtension: 4,
   }),
 );
+const cors = require('cors');
+app.use(cors({ origin: "*" }));
 
 mongoose
   .connect(process.env.MONGODB_ATLAS_URI, {})
@@ -32,7 +33,6 @@ const publicDirectoryPath = path.join(__dirname, './view');
 app.use(express.static(publicDirectoryPath));
 
 app.use('/course-file', express.static('course-file'));
-app.use(cors({ origin: "*" }));
 
 app.use(express.json());
 app.use('/users', user);
